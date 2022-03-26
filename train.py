@@ -11,15 +11,15 @@ from dataset.loadDataset import Dataset
 from utils.metric import PSNR
 
 parser = argparse.ArgumentParser(description='PyTorch Template')
-parser.add_argument('--batch_size', default=1, type=int,
+parser.add_argument('--batch_size', default=4, type=int,
                     help='batch size in training')
-parser.add_argument('--train_root', default='D:\Code\DnCNN-PyTorch\data\\train/', type=str,
+parser.add_argument('--train_root', default=None, type=str, required=True,
                     help='path to training dataset')
-parser.add_argument('--test_root', default='D:\Code\DnCNN-PyTorch\data\\Set12/', type=str,
+parser.add_argument('--test_root', default=None, type=str, required=True,
                     help='path to test dataset')
 parser.add_argument('--lr', default=1e-3, type=float,
                     help='learning rate')
-parser.add_argument('--pre_trained', default='./experiments/checkpoint/5.pkl', type=str)
+parser.add_argument('--pre_trained', default=None type=str)
 parser.add_argument('--exp_dir', default='./experiments', type=str)
 parser.add_argument('--epoch', default=100, type=int)
 parser.add_argument('--num_work', default=4, type=int)
