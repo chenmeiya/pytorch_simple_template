@@ -19,7 +19,7 @@ parser.add_argument('--test_root', default=None, type=str, required=True,
                     help='path to test dataset')
 parser.add_argument('--lr', default=1e-3, type=float,
                     help='learning rate')
-parser.add_argument('--pre_trained', default=None type=str)
+parser.add_argument('--pre_trained', default=None, type=str)
 parser.add_argument('--exp_dir', default='./experiments', type=str)
 parser.add_argument('--epoch', default=100, type=int)
 parser.add_argument('--num_work', default=4, type=int)
