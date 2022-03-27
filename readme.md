@@ -10,12 +10,12 @@ Image denoise is used as base task. The template including following modules
 
 ## How to run?
 ### test
-'''
+```
 python test.py --test_root $TEST_DATA_ROOT --save_path $SAVE_RESULT_PATH
 --pre_trained $PRETRAINED_MODEL_PATH
-'''
+```
 
 ### train
-'''
-python train.py --train_root $TRAIN_DATA_ROOT --val_root $VALIDATION_DATA_ROOT
-'''
+```
+python train.py --train_root $TRAIN_DATA_ROOT --test_root $VALIDATION_DATA_ROOT
+```
