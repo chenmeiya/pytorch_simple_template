@@ -7,7 +7,7 @@ from torch.utils.data import DataLoader
 from model.network import Model
 from tensorboardX import SummaryWriter
 import numpy as np
-from dataset.loadDataset import Dataset
+from dataset.loadDataset import LoadData
 from utils.metric import PSNR
 
 parser = argparse.ArgumentParser(description='PyTorch Template')
@@ -42,8 +42,8 @@ class Trainer():
             os.makedirs(self.log_dir)
 
         # load dataset
-        train_data = Dataset(args.train_root, 20)
-        val_data = Dataset(args.test_root, 20)
+        train_data = LoadData(args.train_root, 20)
+        val_data = LoadData(args.test_root, 20)
         self.train_load = DataLoader(train_data, num_workers=args.num_work, batch_size=args.batch_size,
                                      shuffle=False)
         self.val_data = DataLoader(val_data, num_workers=args.num_work, batch_size=1,
@@ -119,6 +119,7 @@ class Trainer():
             for test_data in self.val_data:
                 gt, noisy = test_data
                 noisy = noisy.to(self.device)
+                gt = gt.to(self.device)
                 with torch.no_grad():
                     pred = self.net(noisy)
                 psnr = PSNR(gt, pred)

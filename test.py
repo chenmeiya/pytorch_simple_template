@@ -6,7 +6,7 @@ from torch.utils.data import DataLoader
 from model.network import Model
 from tensorboardX import SummaryWriter
 import numpy as np
-from dataset.loadDataset import Dataset
+from dataset.loadDataset import LoadData
 from utils.metric import PSNR
 
 parser = argparse.ArgumentParser(description='PyTorch Template')
@@ -29,7 +29,7 @@ class Tester():
             os.makedirs(self.save_path)
 
         # load dataset
-        test_data = Dataset(args.test_root, 20)
+        test_data = LoadData(args.test_root, 20)
         self.test_data = DataLoader(test_data, num_workers=args.num_work, batch_size=1,
                                     shuffle=False)
         # load network
@@ -55,6 +55,7 @@ class Tester():
         for test_data in self.test_data:
             gt, noisy = test_data
             noisy = noisy.to(self.device)
+            gt = gt.to(self.device)
             with torch.no_grad():
                 pred = self.net(noisy)
             psnr = PSNR(gt, pred)

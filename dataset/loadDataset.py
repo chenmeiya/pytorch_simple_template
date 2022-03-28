@@ -1,12 +1,12 @@
 from torchvision import transforms
-from torch.utils.data import DataLoader
+from torch.utils.data import Dataset
 import numpy as np
 import cv2
 from glob import glob
 import torch
 
 
-class Dataset(DataLoader):
+class LoadData(Dataset):
     """
     data loading demo
     """
